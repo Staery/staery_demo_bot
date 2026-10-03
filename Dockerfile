@@ -1,0 +1,24 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    DATABASE_PATH=/app/data/bot.sqlite3
+
+WORKDIR /app
+
+RUN useradd --create-home --uid 1000 bot
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY bot ./bot
+RUN mkdir -p /app/data && chown bot:bot /app/data
+
+USER bot
+VOLUME ["/app/data"]
+# Only used in webhook mode (MODE=webhook).
+EXPOSE 8080
+
+CMD ["python", "-m", "bot"]

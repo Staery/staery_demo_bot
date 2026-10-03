@@ -1,0 +1,17 @@
+services:
+  bot:
+    build: .
+    image: staery-demo-bot:latest
+    env_file: .env
+    environment:
+      DATABASE_PATH: /app/data/bot.sqlite3
+    volumes:
+      - bot-data:/app/data
+    restart: unless-stopped
+    # Webhook mode (MODE=webhook): publish the port and put a TLS-terminating
+    # reverse proxy (nginx, Caddy, Traefik...) in front of it.
+    # ports:
+    #   - "8080:8080"
+
+volumes:
+  bot-data:
