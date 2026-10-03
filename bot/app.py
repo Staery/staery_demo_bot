@@ -33,8 +33,7 @@ def build_application(settings: Settings, request: BaseRequest | None = None) ->
     if request is not None:
         builder = builder.request(request)
     application = (
-        builder
-        .context_types(ContextTypes(context=BotContext))
+        builder.context_types(ContextTypes(context=BotContext))
         .defaults(
             Defaults(
                 parse_mode=ParseMode.HTML,
