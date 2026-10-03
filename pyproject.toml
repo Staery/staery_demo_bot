@@ -1,0 +1,47 @@
+[project]
+name = "staery-demo-bot"
+version = "2.0.0"
+description = "A Telegram bot that demonstrates the Bot API features available from Python (python-telegram-bot 22)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Staery" }]
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".venv", "data"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+    "C4",  # flake8-comprehensions
+    "RUF", # ruff-specific rules
+    "ASYNC",
+    "LOG",
+    "PT",  # flake8-pytest-style
+]
+ignore = [
+    "RUF001", # ambiguous unicode characters (Cyrillic strings are intentional)
+    "RUF002",
+    "RUF003",
+    "PT018",  # composite asserts are used for type narrowing in handlers
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["bot"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-ra"
