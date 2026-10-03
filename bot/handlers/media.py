@@ -154,7 +154,7 @@ async def send_quiz(update: Update, context: BotContext) -> None:
         question.question[lang],
         question.options[lang],
         type=Poll.QUIZ,
-        correct_option_id=question.correct,  # type: ignore[arg-type]
+        correct_option_ids=[question.correct],  # type: ignore[list-item]
         explanation=question.explanation[lang],
         is_anonymous=True,
     )

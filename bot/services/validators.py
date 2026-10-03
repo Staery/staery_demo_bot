@@ -8,7 +8,7 @@ NAME_MIN, NAME_MAX = 2, 64
 MESSAGE_MIN, MESSAGE_MAX = 10, 1000
 EMAIL_MAX = 254
 
-_NAME_RE = re.compile(r"[^\W\d_]+(?:[ '.\-][^\W\d_]+)*\.?")
+_NAME_RE = re.compile(r"[^\W\d_]+(?:[ '.\-]+[^\W\d_]+)*\.?")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@(?:[A-Za-z0-9\-]+\.)+[A-Za-z]{2,}")
 
 
